@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<title>Node.js Notificador</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+	</script>
+<script src="http://localhost/socket.io/socket.io.js">
+</script>
+	<style>
+body{
+	color: #333;
+	background: #333;
+	font-family: "Helvetica", Arial;
+	font-size: 48px;
+	text-align: center;
+}
+form
+{
+	background: #CCC;
+	border-radius: 1em;
+	box-shadow: 0px 5px 5px rgba(0,0,0,0.5);
+	text-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+	margin: 1em auto;
+	padding: 1em;
+	width: 40%;
+}
+form input
+{
+	display: block;
+	font-size: 40px;
+	margin: 1em auto;
+	padding: 0.5em;
+	width: 70%;
+}
+h1{color:white;}
+	</style>
+<script>
+var websocket = io.connect("http://localhost:6969");
+$(document).on("ready", iniciar);
+function iniciar()
+{
+	websocket.on("nombreDesdeServidor", recibirMensaje);
+	$("#formulario").on("submit",enviarMensaje);
+}
+function enviarMensaje(e)
+{
+	e.preventDefault();
+	websocket.emit("nuevoNombre", $("#nombre").val() );
+	$("#nombre").fadeOut();
+}
+function recibirMensaje(datosServidor)
+{
+	$("#formulario label").text("Acaba de entrar " + datosServidor);
+}
+</script>
+</head>
+<body>
+	<header><h1>@LeonidasEsteban</h1></header>
+	<form id="formulario">
+		<label>¿Cual es tu nombre?</label>
+		<input type="text" maxlength="10" id="nombre" 
+			placeholder="Tu nombre completo"
+			required />
+	</form>
+</body>
+</html>
+

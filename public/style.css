@@ -1,0 +1,25 @@
+body {
+  background: #222;
+  font-family: 'Open Sans', Arial;
+  font-size: 16px;
+  /*text-align: center;*/
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+  color: #eee;
+  /*width: 550px;*/
+}
+header {
+  margin: 0 0 1em 0;
+  padding: 0.5em 0;
+  width: 100%;
+}
+#grid {
+color: #eee;
+}
+table.grid td {
+    width: 20px;
+    height: 20px;
+    border: 1px dotted #999;
+    background-color: #eeeeee;
+}
+
